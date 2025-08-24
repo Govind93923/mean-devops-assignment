@@ -52,6 +52,12 @@ docker-compose up -d --build
 ## Screenshots
 
 ![WhatsApp Image 2025-08-24 at 22 49 58_dc4f397c](https://github.com/user-attachments/assets/728807fa-e48e-43bc-a5e3-177d8ee986fa)
+<img width="1919" height="873" alt="Screenshot 2025-08-24 225044" src="https://github.com/user-attachments/assets/2eb64de5-fb2f-4073-a6ae-1531cff7deb0" />
+
+<img width="1919" height="258" alt="Screenshot 2025-08-24 224220" src="https://github.com/user-attachments/assets/5cc563b1-a6b2-4881-8c1a-c7533792df00" />
+<img width="1913" height="494" alt="Screenshot 2025-08-24 224333" src="https://github.com/user-attachments/assets/e33fae60-50c8-48c7-b8b1-d44479288236" />
+<img width="1919" height="744" alt="Screenshot 2025-08-24 224946" src="https://github.com/user-attachments/assets/d0849f1d-f371-43ad-ba26-4418c7e2968a" />
+<img width="1919" height="773" alt="Screenshot 2025-08-24 224703" src="https://github.com/user-attachments/assets/ea47f355-13d1-4f53-9471-0a19a45bafc1" />
 
 
 * *CI/CD Execution:* (Attach GitHub Actions screenshot)
