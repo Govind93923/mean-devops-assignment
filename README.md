@@ -51,6 +51,9 @@ docker-compose up -d --build
 
 ## Screenshots
 
+![WhatsApp Image 2025-08-24 at 22 49 58_dc4f397c](https://github.com/user-attachments/assets/728807fa-e48e-43bc-a5e3-177d8ee986fa)
+
+
 * *CI/CD Execution:* (Attach GitHub Actions screenshot)
 * *Application UI:* (Attach running app screenshot)
 
