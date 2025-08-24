@@ -118,29 +118,14 @@ cd mean-app
 Start the application using Docker Compose
 
 docker-compose up -d --build
-
-
-Access the app
-👉 http://<EC2_PUBLIC_IP>
-
 📸 Screenshots
 1. Application Running on Browser
-
 2. Angular Frontend UI
 <img width="1919" height="873" alt="Frontend UI" src="https://github.com/user-attachments/assets/2eb64de5-fb2f-4073-a6ae-1531cff7deb0" />
-3. MongoDB Data
 <img width="1919" height="258" alt="MongoDB Data" src="https://github.com/user-attachments/assets/5cc563b1-a6b2-4881-8c1a-c7533792df00" />
-4. Backend Logs
 <img width="1913" height="494" alt="Backend Logs" src="https://github.com/user-attachments/assets/e33fae60-50c8-48c7-b8b1-d44479288236" />
-5. Docker Containers Running
 <img width="1919" height="744" alt="Docker Running" src="https://github.com/user-attachments/assets/d0849f1d-f371-43ad-ba26-4418c7e2968a" />
-6. GitHub Actions Workflow Execution
 <img width="1919" height="773" alt="GitHub Actions CI/CD" src="https://github.com/user-attachments/assets/ea47f355-13d1-4f53-9471-0a19a45bafc1" />
-7. Mobile Preview (WhatsApp Screenshots)
-
-
-
-
 ✅ Conclusion
 
 This setup ensures:
