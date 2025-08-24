@@ -1,0 +1,37 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: mean-backend
+    ports:
+      - "3000:3000"
+    environment:
+      # This connects to the 'mongodb' service defined below
+      MONGO_URI: mongodb://mongodb:27017/mean-app
+    depends_on:
+      - mongodb
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: mean-frontend
+    ports:
+      # We'll map this to port 80 via Nginx later on the VM
+      - "4200:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:latest
+    container_name: mean-mongodb
+    volumes:
+      # This persists the database data on the host machine
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
