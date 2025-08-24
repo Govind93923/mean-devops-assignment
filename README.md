@@ -1,7 +1,3 @@
-🚀 MEAN Stack CRUD Application Deployment
-
-This repository contains a full-stack MEAN (MongoDB, Express.js, Angular, Node.js) CRUD application, containerized using Docker, orchestrated with Docker Compose, and deployed to an AWS EC2 instance using CI/CD via GitHub Actions.
-
 📌 Project Overview
 
 This project demonstrates a complete DevOps workflow for deploying a full-stack application.
@@ -21,6 +17,9 @@ CI/CD: GitHub Actions
 Deployment Environment: AWS EC2 (Ubuntu)
 
 🏗️ Architecture Diagram
+
+Here’s the high-level architecture of this project:
+
                 ┌────────────────────────┐
                 │      Developer         │
                 │ (Push code to GitHub)  │
@@ -50,17 +49,16 @@ Deployment Environment: AWS EC2 (Ubuntu)
          └───────────────────────────────────────┘
 
 
-✅ Workflow Summary:
+Developer pushes code → GitHub Actions triggers.
 
-Developer pushes code → GitHub Actions triggers CI/CD.
+CI/CD pipeline builds & deploys containers to AWS EC2.
 
-Pipeline builds & deploys containers to AWS EC2.
+Nginx acts as a reverse proxy → routes traffic to Angular & Node.js backend.
 
-Nginx routes traffic to Angular frontend & Node.js backend.
-
-MongoDB stores persistent application data.
+MongoDB stores application data.
 
 ⚙️ Docker Configuration
+
 Backend Dockerfile
 
 Builds the Node.js backend application.
@@ -71,7 +69,7 @@ Installs dependencies.
 
 Copies source code.
 
-Runs app with npm start.
+Runs the app with npm start.
 
 Frontend Dockerfile
 
@@ -81,7 +79,7 @@ Stage 1: Builds Angular app into static files.
 
 Stage 2: Uses Nginx to serve static files.
 
-Optimized, lightweight production-ready image.
+Ensures optimized, lightweight production-ready image.
 
 🔄 CI/CD with GitHub Actions
 
@@ -93,26 +91,19 @@ Steps:
 
 Checkout repository code.
 
-Establish SSH connection to AWS EC2 (via GitHub Secrets).
+Establish SSH connection to AWS EC2 (using GitHub Secrets).
 
 Pull latest code on EC2.
 
-Restart containers with:
-
-docker-compose up -d --build
+Restart containers with docker-compose up -d --build.
 
 🌐 Nginx Configuration
 
-Reverse proxy config (nginx.conf).
+Reverse proxy configuration (nginx.conf).
 
-Routes traffic to Angular frontend & backend API.
+Routes incoming traffic to Angular frontend & backend API.
 
-SPA Handling:
-
-try_files $uri /index.html;
-
-
-Ensures deep links redirect to Angular’s index.html.
+SPA Handling: try_files ensures deep links redirect to index.html.
 
 🚀 Deployment Steps
 
@@ -132,16 +123,20 @@ Access the app
 
 📸 Screenshots
 <img width="1919" height="873" alt="Frontend UI" src="https://github.com/user-attachments/assets/2eb64de5-fb2f-4073-a6ae-1531cff7deb0" />
-
+3. MongoDB Data
 <img width="1919" height="258" alt="MongoDB Data" src="https://github.com/user-attachments/assets/5cc563b1-a6b2-4881-8c1a-c7533792df00" />
-
+4. Backend Logs
 <img width="1913" height="494" alt="Backend Logs" src="https://github.com/user-attachments/assets/e33fae60-50c8-48c7-b8b1-d44479288236" />
-
+5. Docker Containers Running
 <img width="1919" height="744" alt="Docker Running" src="https://github.com/user-attachments/assets/d0849f1d-f371-43ad-ba26-4418c7e2968a" />
 
 <img width="1919" height="773" alt="GitHub Actions CI/CD" src="https://github.com/user-attachments/assets/ea47f355-13d1-4f53-9471-0a19a45bafc1" />
-![docker](https://github.com/user-attachments/assets/a4a03833-3366-448d-8173-f7382288aba2)
-![code](https://github.com/user-attachments/assets/dbb2ec13-5bf3-4916-86f2-4523c5760054)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8b6f6932-ab06-4b9e-86e8-d79d63f9128d" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a5f48723-d038-497d-9f0c-a26177ad1278" />
+
+
+
+
 
 ✅ Conclusion
 
