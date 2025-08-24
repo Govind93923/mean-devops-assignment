@@ -4,128 +4,66 @@ This repository contains a *full-stack MEAN (MongoDB, Express.js, Angular, Node.
 
 ---
 
-## ⚙ Project Components
+## Project Overview
+
+This project demonstrates a complete DevOps workflow for deploying a full-stack application.
 
 * *Frontend:* Angular
 * *Backend:* Node.js with Express.js
 * *Database:* MongoDB
 * *Web Server & Reverse Proxy:* Nginx
+* *Containerization:* Docker & Docker Compose
 * *CI/CD:* GitHub Actions
-* *Deployment:* Docker, Docker Compose on AWS EC2
+* *Deployment Environment:* AWS EC2 (Ubuntu)
 
 ---
 
-## 🐳 Docker Configuration
+## Docker Configuration
 
-### Backend Dockerfile
+*Backend Dockerfile*: This Dockerfile builds the Node.js backend application. It starts with a base Node.js image, sets the working directory, copies the package files, installs dependencies, and then copies the source code. The final CMD command runs the application using npm start.
 
-```dockerfile
-FROM node:18
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-CMD ["npm", "start"]
-Frontend Dockerfile
-Dockerfile
+*Frontend Dockerfile*: This file uses a multi-stage build to handle the Angular frontend. The first stage uses a Node.js image to build the Angular application, which compiles the project into static files. The second stage uses a lightweight Nginx image to serve these static files, ensuring a small and efficient final image for production.
 
-FROM node:18 as build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build --prod
+---
 
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
-Docker Compose File (docker-compose.yml)
-YAML
+## CI/CD with GitHub Actions
 
-version: '3.8'
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongo
+The GitHub Actions workflow is defined in a YAML file. It's triggered on a push to the main branch. The job checks out the repository's code, sets up an SSH connection to the AWS EC2 instance using a private key stored as a GitHub secret, and then executes a single SSH command on the remote server. This command navigates to the project directory, pulls the latest code from the repository, and runs a command to stop and restart the containers in detached mode, using new images.
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "80:80"
-  
-  mongo:
-    image: mongo:latest
-    ports:
-      - "27017:27017"
-🚀 CI/CD with GitHub Actions
-The following workflow is located at .github/workflows/deploy.yml.
+---
 
-YAML
+## Nginx Configuration
 
-name: Deploy to EC2
+The nginx.conf file is a reverse proxy configuration that routes incoming web traffic. It listens on port 80 and serves the Angular frontend's static files. The try_files directive is crucial for single-page applications (SPAs) like Angular, as it ensures that all deep links are redirected to the index.html file, allowing Angular's routing to handle the navigation on the client side.
 
-on:
-  push:
-    branches: [ "main" ]
+---
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+## Deployment Steps
 
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
-
-    - name: Deploy to EC2
-      run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} \
-        'cd ~/mean-app && git pull && docker-compose down && docker-compose up -d --build'
-🌐 Nginx Configuration
-The nginx.conf file, located in the nginx/ directory, is used to serve the frontend.
-
-Nginx
-
-events {}
-http {
-    server {
-        listen 80;
-        location / {
-            root /usr/share/nginx/html;
-            index index.html;
-            try_files $uri $uri/ /index.html;
-        }
-    }
-}
-📋 Deployment Instructions
-Clone the repository on your EC2 instance:
-
-Bash
-
-git clone <your-repo-url>
+1. *Clone the repository on EC2:*
+git clone <repo_url>
 cd mean-app
-Start the application with Docker Compose:
-
-Bash
-
+2. *Start the application using Docker Compose:*
 docker-compose up -d --build
-Access the application:
-Open your web browser and navigate to http://<EC2_PUBLIC_IP>.
+3. *Access the app:* http://<EC2_PUBLIC_IP>
 
-📸 Screenshots
-CI/CD Execution:
+---
 
-Application UI:
+## Screenshots
 
-📈 Future Improvements
-Add SSL with Let's Encrypt.
+* *CI/CD Execution:* (Attach GitHub Actions screenshot)
+* *Application UI:* (Attach running app screenshot)
 
-Implement auto-scaling with AWS ECS.
+---
 
-Set up centralized logging with the ELK Stack.
+## Conclusion
+
+This setup ensures *seamless CI/CD pipeline integration, a **containerized environment, and **scalable deployment* of a MEAN application on AWS.
+
+---
+
+## Future Improvements
+
+* Add *SSL with Let's Encrypt*.
+* Implement *auto-scaling with AWS ECS*.
+* Set up *centralized logging with the ELK Stack*.
