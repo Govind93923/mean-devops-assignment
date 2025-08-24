@@ -1,41 +1,21 @@
 # MEAN Stack CRUD Application Deployment
 
-This repository contains a *full-stack MEAN (MongoDB, Express.js, Angular, Node.js) CRUD application, containerized using Docker, orchestrated with Docker Compose, and deployed using **CI/CD via GitHub Actions* to an *AWS EC2 instance*.
+This repository contains a *full-stack MEAN (MongoDB, Express.js, Angular, Node.js) CRUD application, containerized using Docker, orchestrated with Docker Compose, and deployed to an **AWS EC2 instance* using *CI/CD via GitHub Actions*.
 
 ---
 
-## Project Overview
+## ⚙ Project Components
 
 * *Frontend:* Angular
 * *Backend:* Node.js with Express.js
 * *Database:* MongoDB
 * *Web Server & Reverse Proxy:* Nginx
-* *Containerization:* Docker & Docker Compose
 * *CI/CD:* GitHub Actions
-* *Deployment Environment:* AWS EC2 (Ubuntu)
+* *Deployment:* Docker, Docker Compose on AWS EC2
 
 ---
 
-## Repository Structure
-
-├── backend/
-│   ├── Dockerfile
-│   ├── src/
-│   └── package.json
-├── frontend/
-│   ├── Dockerfile
-│   ├── src/
-│   └── package.json
-├── nginx/
-│   ├── nginx.conf
-├── docker-compose.yml
-├── .github/workflows/deploy.yml
-└── README.md
-
-
----
-
-## Docker Setup
+## 🐳 Docker Configuration
 
 ### Backend Dockerfile
 
@@ -79,8 +59,9 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-CI/CD with GitHub Actions
-.github/workflows/deploy.yml
+🚀 CI/CD with GitHub Actions
+The following workflow is located at .github/workflows/deploy.yml.
+
 YAML
 
 name: Deploy to EC2
@@ -106,7 +87,9 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} \
         'cd ~/mean-app && git pull && docker-compose down && docker-compose up -d --build'
-Nginx Configuration (nginx/nginx.conf)
+🌐 Nginx Configuration
+The nginx.conf file, located in the nginx/ directory, is used to serve the frontend.
+
 Nginx
 
 events {}
@@ -120,35 +103,29 @@ http {
         }
     }
 }
-Deployment Steps
-Clone the repository on EC2:
+📋 Deployment Instructions
+Clone the repository on your EC2 instance:
 
 Bash
 
-git clone <repo_url>
+git clone <your-repo-url>
 cd mean-app
-Start the application using Docker Compose:
+Start the application with Docker Compose:
 
 Bash
 
 docker-compose up -d --build
-Access the app: http://<EC2_PUBLIC_IP>
+Access the application:
+Open your web browser and navigate to http://<EC2_PUBLIC_IP>.
 
-Screenshots
+📸 Screenshots
 CI/CD Execution:
-
-Docker Image Build & Push:
 
 Application UI:
 
-Nginx Setup:
+📈 Future Improvements
+Add SSL with Let's Encrypt.
 
-Conclusion
-This setup ensures seamless CI/CD pipeline integration, a containerized environment, and scalable deployment of a MEAN application on AWS.
+Implement auto-scaling with AWS ECS.
 
-Future Improvements
-Add SSL with Let's Encrypt
-
-Implement auto-scaling with AWS ECS
-
-Set up centralized logging with ELK Stack
+Set up centralized logging with the ELK Stack.
