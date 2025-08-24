@@ -126,6 +126,10 @@ docker-compose up -d --build
 <img width="1913" height="494" alt="Backend Logs" src="https://github.com/user-attachments/assets/e33fae60-50c8-48c7-b8b1-d44479288236" />
 <img width="1919" height="744" alt="Docker Running" src="https://github.com/user-attachments/assets/d0849f1d-f371-43ad-ba26-4418c7e2968a" />
 <img width="1919" height="773" alt="GitHub Actions CI/CD" src="https://github.com/user-attachments/assets/ea47f355-13d1-4f53-9471-0a19a45bafc1" />
+![WhatsApp Image 2025-08-24 at 23 17 23_d12f6478](https://github.com/user-attachments/assets/001e0e39-b044-4e15-bc0c-76bfb9f7f8c2)
+![WhatsApp Image 2025-08-24 at 23 17 24_cf4256ef](https://github.com/user-attachments/assets/c2c3ab5b-f3c0-4079-b510-1adf539f816e)
+
+
 ✅ Conclusion
 
 This setup ensures:
